@@ -5,6 +5,7 @@ import android.opengl.GLES20.glGenTextures
 import android.opengl.GLSurfaceView
 import androidx.annotation.Keep
 import android.util.AttributeSet
+import android.os.Build
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
@@ -106,6 +107,10 @@ class CameraSurfaceView : GLSurfaceView, GLSurfaceView.Renderer {
     companion object {
 
         init {
+              if (Build.VERSION.SDK_INT <= 17) {
+              System.loadLibrary("camerakit-core")
+           }
+
             System.loadLibrary("camerakit")
         }
 
